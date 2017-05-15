@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>CloudTrade</display-name>
+  <welcome-file-list>
+    
+    <welcome-file>MainIndex.jsp</welcome-file>
+   
+  </welcome-file-list>
+  <servlet>
+        <servlet-name>RedirectCallback</servlet-name>
+        <servlet-class>com.auth0.Auth0ServletCallback</servlet-class>
+        <init-param>
+            <param-name>auth0.redirect_on_success</param-name>
+            <param-value>/portal/home.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>auth0.redirect_on_error</param-name>
+            <param-value>/login.jsp</param-value>
+        </init-param>
+    </servlet>
+  <servlet>
+   <servlet-name>PostServlets</servlet-name>
+   <servlet-class>servlets.PostServlets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostServlets</servlet-name>
+    <url-pattern>/WebContent/admin/AddCategory.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+   <servlet-name>ManCategoriesServlet</servlet-name>
+   <servlet-class>servlets.ManCategoriesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManCategoriesServlet</servlet-name>
+    <url-pattern>/WebContent/admin/ManageCategory.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+   <servlet-name>BuyerLoginServlet</servlet-name>
+   <servlet-class>frontendservlets.BuyerLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuyerLoginServlet</servlet-name>
+    <url-pattern>/WebContent/BuyerLogin.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminLoginServlet</servlet-name>
+    <url-pattern>/WebContent/admin/Login.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+        <servlet-name>RedirectCallback</servlet-name>
+        <url-pattern>/callback</url-pattern>
+    </servlet-mapping>
+  <servlet>
+   <servlet-name>AdminLoginServlet</servlet-name>
+   <servlet-class>servlets.AdminLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddProductsServlet</servlet-name>
+    <url-pattern>/WebContent/AddProduct.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+   <servlet-name>AddProductsServlet</servlet-name>
+   <servlet-class>frontendservlets.AddProductsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyOrdersServlet</servlet-name>
+    <url-pattern>/WebContent/MyOrders.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+   <servlet-name>MyOrdersServlet</servlet-name>
+   <servlet-class>frontendservlets.MyOrdersServlet</servlet-class>
+  </servlet>
+  <servlet>
+   <servlet-name>LoginServlet</servlet-name>
+   <servlet-class>tableclasses.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/WebContent/authlogin</url-pattern>
+  </servlet-mapping>
+<servlet>
+<servlet-name>HomeServlet</servlet-name>
+   <servlet-class>tableclasses.HomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/WebContent/authhome</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>LogoutServlet</servlet-name>
+   <servlet-class>tableclasses.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/WebContent/authlogout</url-pattern>
+  </servlet-mapping>
+<!-- Filters -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.auth0.Auth0Filter</filter-class>
+        <init-param>
+            <param-name>auth0.redirect_on_authentication_error</param-name>
+            <param-value>/login.jsp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/portal/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Error Pages-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/login.jsp</location>
+    </error-page>
+ <!--  contextparam -->
+  <context-param>
+    <param-name>auth0.domain</param-name>
+    <param-value>newcloud.auth0.com</param-value>
+</context-param>
+
+<context-param>
+    <param-name>auth0.issuer</param-name>
+    <param-value>https://newcloud.auth0.com/</param-value>
+</context-param>
+
+<context-param>
+    <param-name>auth0.client_id</param-name>
+    <param-value>CUhqC0yBiBGJctZ9Bjv2v145JuD4AcRw</param-value>
+</context-param>
+
+<context-param>
+    <param-name>auth0.signing_algorithm</param-name>
+    <param-value>HS256</param-value>
+    <!--<param-value>RS256</param-value>-->
+</context-param>
+
+<context-param>
+    <param-name>auth0.client_secret</param-name>
+    <param-value>TSid2tWOsF0kJVcPQ-vNcw9fMlsvXxsVt3ksVXjfeSnxIuQmYczdM2v_G0NzFKBA</param-value>
+</context-param>
+
+</web-app>
